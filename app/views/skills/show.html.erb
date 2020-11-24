@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Skill #<%= @the_skill.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/skills">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_skill/<%= @the_skill.id %>">
+          Delete skill
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_skill.description %>
+      </dd>
+
+      <dt>
+        Requirements count
+      </dt>
+      <dd>
+        <%= @the_skill.requirements_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_skill.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_skill.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit skill
+    </h2>
+
+    <form action="/modify_skill/<%= @the_skill.id %>"  method="post" >
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description" value="<%= @the_skill.description %>">
+      </div>
+
+      <div>
+        <label for="requirements_count_box">
+          Requirements count
+        </label>
+
+        <input type="text" id="requirements_count_box" name="query_requirements_count" value="<%= @the_skill.requirements_count %>">
+      </div>
+
+      <button>
+        Update skill
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Skillset #<%= @the_skillset.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/skillsets">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_skillset/<%= @the_skillset.id %>">
+          Delete skillset
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Skill
+      </dt>
+      <dd>
+        <%= @the_skillset.skill_id %>
+      </dd>
+
+      <dt>
+        Careerpath
+      </dt>
+      <dd>
+        <%= @the_skillset.careerpath_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_skillset.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_skillset.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit skillset
+    </h2>
+
+    <form action="/modify_skillset/<%= @the_skillset.id %>"  method="post" >
+      <div>
+        <label for="skill_id_box">
+          Skill
+        </label>
+
+        <input type="text" id="skill_id_box" name="query_skill_id" value="<%= @the_skillset.skill_id %>">
+      </div>
+
+      <div>
+        <label for="careerpath_id_box">
+          Careerpath
+        </label>
+
+        <input type="text" id="careerpath_id_box" name="query_careerpath_id" value="<%= @the_skillset.careerpath_id %>">
+      </div>
+
+      <button>
+        Update skillset
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

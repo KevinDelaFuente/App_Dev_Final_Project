@@ -1,0 +1,71 @@
+<div>
+  <div>
+    <h1>
+      Careerpath #<%= @the_careerpath.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/careerpaths">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_careerpath/<%= @the_careerpath.id %>">
+          Delete careerpath
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_careerpath.description %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_careerpath.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_careerpath.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit careerpath
+    </h2>
+
+    <form action="/modify_careerpath/<%= @the_careerpath.id %>"  method="post" >
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description" value="<%= @the_careerpath.description %>">
+      </div>
+
+      <button>
+        Update careerpath
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

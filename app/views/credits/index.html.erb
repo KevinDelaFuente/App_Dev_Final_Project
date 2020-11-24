@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all credits
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new credit
+    </h2>
+
+    <form action="/insert_credit" method="post">
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="course_id_box">
+          Course
+        </label>
+
+        <input type="text" id="course_id_box" name="query_course_id">
+      </div>
+
+      <button>
+        Create credit
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Course
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_credits.each do |a_credit| %>
+      <tr>
+        <td>
+          <%= a_credit.id %>
+        </td>
+
+        <td>
+          <%= a_credit.user_id %>
+        </td>
+
+        <td>
+          <%= a_credit.course_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_credit.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_credit.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/credits/<%= a_credit.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

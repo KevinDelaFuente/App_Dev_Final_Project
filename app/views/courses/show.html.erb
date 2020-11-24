@@ -1,0 +1,161 @@
+<div>
+  <div>
+    <h1>
+      Course #<%= @the_course.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/courses">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_course/<%= @the_course.id %>">
+          Delete course
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @the_course.title %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_course.description %>
+      </dd>
+
+      <dt>
+        Professor
+      </dt>
+      <dd>
+        <%= @the_course.professor_id %>
+      </dd>
+
+      <dt>
+        Skill
+      </dt>
+      <dd>
+        <%= @the_course.skill_id %>
+      </dd>
+
+      <dt>
+        Rating
+      </dt>
+      <dd>
+        <%= @the_course.rating %>
+      </dd>
+
+      <dt>
+        Hours required
+      </dt>
+      <dd>
+        <%= @the_course.hours_required %>
+      </dd>
+
+      <dt>
+        Likes count
+      </dt>
+      <dd>
+        <%= @the_course.likes_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_course.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_course.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit course
+    </h2>
+
+    <form action="/modify_course/<%= @the_course.id %>"  method="post" >
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title" value="<%= @the_course.title %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description" value="<%= @the_course.description %>">
+      </div>
+
+      <div>
+        <label for="professor_id_box">
+          Professor
+        </label>
+
+        <input type="text" id="professor_id_box" name="query_professor_id" value="<%= @the_course.professor_id %>">
+      </div>
+
+      <div>
+        <label for="skill_id_box">
+          Skill
+        </label>
+
+        <input type="text" id="skill_id_box" name="query_skill_id" value="<%= @the_course.skill_id %>">
+      </div>
+
+      <div>
+        <label for="rating_box">
+          Rating
+        </label>
+
+        <input type="text" id="rating_box" name="query_rating" value="<%= @the_course.rating %>">
+      </div>
+
+      <div>
+        <label for="hours_required_box">
+          Hours required
+        </label>
+
+        <input type="text" id="hours_required_box" name="query_hours_required" value="<%= @the_course.hours_required %>">
+      </div>
+
+      <div>
+        <label for="likes_count_box">
+          Likes count
+        </label>
+
+        <input type="text" id="likes_count_box" name="query_likes_count" value="<%= @the_course.likes_count %>">
+      </div>
+
+      <button>
+        Update course
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

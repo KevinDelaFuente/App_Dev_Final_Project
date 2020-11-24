@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all skills
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new skill
+    </h2>
+
+    <form action="/insert_skill" method="post">
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+      </div>
+
+      <div>
+        <label for="requirements_count_box">
+          Requirements count
+        </label>
+
+        <input type="text" id="requirements_count_box" name="query_requirements_count">
+      </div>
+
+      <button>
+        Create skill
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Requirements count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_skills.each do |a_skill| %>
+      <tr>
+        <td>
+          <%= a_skill.id %>
+        </td>
+
+        <td>
+          <%= a_skill.description %>
+        </td>
+
+        <td>
+          <%= a_skill.requirements_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_skill.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_skill.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/skills/<%= a_skill.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
