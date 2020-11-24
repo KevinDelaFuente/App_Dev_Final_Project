@@ -3,7 +3,6 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
-#  credits_count   :integer
 #  email           :string
 #  password_digest :string
 #  created_at      :datetime         not null
