@@ -9,9 +9,9 @@
 <hr>
 <div>
   <div>
-    <table>
+    <table class = 'table table-hover'>
       <tr>
-        <th>
+        <th scope="col">
           ID
         </th>
 
@@ -78,23 +78,25 @@
           <%= a_course.skill_id %>
         </td>
 
-        <td>
+        <td style="text-align:center">
           <%= a_course.rating %>
         </td>
 
-        <td>
+        <td style="text-align:center">
           <%= a_course.hours_required %>
         </td>
 
-        <td>
+        <td style="text-align:center">
           <%= a_course.likes_count %>
         </td>
 
-        <td>
+        <td style="text-align:center">
           <% if a_course.likes.first != nil && a_course.likes.first.user_id == session[:user_id] %>
-            Liked
+            <img src="https://1.bp.blogspot.com/--qAXSfx8T4A/WL-ecki3nRI/AAAAAAAAzbg/kdvEXjWEVrU8bvWnOq4XtSBUEJV10ESNgCLcB/s280/like-flat.png"
+            width="50" height="50">
           <% else%>
-            not liked
+            <img src="https://img.icons8.com/cotton/2x/facebook-like--v2.png" 
+            width="40" height="40">
           <% end%>
         </td>
 
