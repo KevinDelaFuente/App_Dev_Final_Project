@@ -18,7 +18,23 @@ class ApplicationController < ActionController::Base
   def home
     the_id = session[:user_id]
     @current_user = User.where({ :id => the_id }).first
-    render({ :template => "home.html.erb", :notice => "Welcome!" })
+    
+    @liked_courses = Like.where({ :user_id => the_id })
+    
+    # @list_of_courses = Course.where({ :id => @liked_courses})
+
+    cruce = Array.new
+    
+    @liked_courses.each do |a_like|
+      cruce.push(a_like.course_id)  
+    end
+
+    @liked_courses.each do |a_like|
+      @list_of_courses = Course.where({ :id => cruce})
+    end
+
+    # @list_of_courses
+    render({ :template => "home.html.erb"})
   end
 
 end

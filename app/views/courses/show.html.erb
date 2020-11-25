@@ -7,7 +7,7 @@
     <% if @the_course.likes.where({ :user_id => session[:user_id]}).first == nil %>
       
       <form action="/insert_like" method="post">
-        <div>Status:
+        <div>Click to like!   ---->
         <input type="hidden" value ="<%= session[:user_id] %>" id="user_id_box" name="query_user_id">
         <input type="hidden" value ="<%= @the_course.id %>" id="course_id_box" name="query_course_id">
         <button class="btn">
@@ -19,10 +19,8 @@
 
     <% else %>
 
-
-
       <form action="/delete_like/<%= @the_course.likes.where({ :user_id => session[:user_id]}).first.id %>" method="get">
-        <div>Status:
+        <div>Click to unlike! ->
         <input type="hidden" value ="<%= session[:user_id] %>" id="user_id_box" name="query_user_id">
         <input type="hidden" value ="<%= @the_course.id %>" id="course_id_box" name="query_course_id">
         <button class="btn">

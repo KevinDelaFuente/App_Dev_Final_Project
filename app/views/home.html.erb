@@ -33,3 +33,65 @@
 <hr>
 
 <h2>My favorite classes</h2>
+
+@liked_courses
+
+<table class = 'table table-hover'>
+      <tr>
+
+        <th>
+          Title
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Professor
+        </th>
+
+        <th>
+          Status
+        </th>
+
+        <th>
+          Details
+        </th>
+
+      </tr>
+
+      <% @list_of_courses.each do |a_course| %>
+      <tr>
+
+        <td>
+          <%= a_course.title %>
+        </td>
+
+        <td>
+          <%= a_course.description %>
+        </td>
+
+        <td>
+          <%= a_course.professor_id %>
+        </td>
+
+        <td style="text-align:center">
+          <% if a_course.likes.first != nil && a_course.likes.first.user_id == session[:user_id] %>
+            <img src="https://1.bp.blogspot.com/--qAXSfx8T4A/WL-ecki3nRI/AAAAAAAAzbg/kdvEXjWEVrU8bvWnOq4XtSBUEJV10ESNgCLcB/s280/like-flat.png"
+            width="50" height="50">
+
+          <% else%>
+            <img src="https://img.icons8.com/cotton/2x/facebook-like--v2.png" 
+            width="40" height="40">
+          <% end%>
+        </td>
+
+        <td>
+          <a href="/courses/<%= a_course.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
