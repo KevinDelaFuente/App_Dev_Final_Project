@@ -24,9 +24,9 @@ class LikesController < ApplicationController
 
     if the_like.valid?
       the_like.save
-      redirect_to("/likes", { :notice => "Like created successfully." })
+      redirect_to("/courses/", { :notice => "Like created successfully." })
     else
-      redirect_to("/likes", { :notice => "Like failed to create successfully." })
+      redirect_to("/courses", { :notice => "Like failed to create successfully." })
     end
   end
 
@@ -48,7 +48,7 @@ class LikesController < ApplicationController
   def destroy
     the_id = params.fetch("path_id")
     the_like = Like.where({ :id => the_id }).at(0)
-
+    the_like.course_id = params.fetch("query_course_id")
     the_like.destroy
 
     redirect_to("/likes", { :notice => "Like deleted successfully."} )

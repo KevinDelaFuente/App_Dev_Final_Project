@@ -3,6 +3,33 @@
     <h1>
       Course #<%= @the_course.id %> details
     </h1>
+    <%# @the_course.likes.where({ :user_id => session[:user_id]}).first.user_id %>
+    <% if @the_course.likes.where({ :user_id => session[:user_id]}).first.user_id != nil %>
+      
+        <form action="/insert_like" method="post">
+          <div>Status:
+          <input type="hidden" value ="<%= session[:user_id] %>" id="user_id_box" name="query_user_id">
+          <input type="hidden" value ="<%= @the_course.id %>" id="course_id_box" name="query_course_id">
+          <button class="btn">
+            <img src="https://1.bp.blogspot.com/--qAXSfx8T4A/WL-ecki3nRI/AAAAAAAAzbg/kdvEXjWEVrU8bvWnOq4XtSBUEJV10ESNgCLcB/s280/like-flat.png"
+            width="50" height="50">
+          </button>
+          </div>
+        </form>
+    <% else %>
+
+      <form action="/insert_like" method="post">
+        <div>Status:
+        <input type="hidden" value ="<%= session[:user_id] %>" id="user_id_box" name="query_user_id">
+        <input type="hidden" value ="<%= @the_course.id %>" id="course_id_box" name="query_course_id">
+        <button class="btn">
+          <img src="https://1.bp.blogspot.com/--qAXSfx8T4A/WL-ecki3nRI/AAAAAAAAzbg/kdvEXjWEVrU8bvWnOq4XtSBUEJV10ESNgCLcB/s280/like-flat.png"
+          width="50" height="50">
+        </button>
+        </div>
+      </form>
+
+    <% end%>
 
     <div>
       <div>
