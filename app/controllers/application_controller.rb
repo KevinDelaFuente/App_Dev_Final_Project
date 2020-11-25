@@ -16,6 +16,8 @@ class ApplicationController < ActionController::Base
   end
 
   def home
+    the_id = session[:user_id]
+    @current_user = User.where({ :id => the_id }).first
     render({ :template => "home.html.erb", :notice => "Welcome!" })
   end
 
