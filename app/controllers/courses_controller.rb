@@ -4,6 +4,8 @@ class CoursesController < ApplicationController
 
     @list_of_courses = matching_courses.order({ :created_at => :desc })
 
+    @likes_array = Like.where({ :user_id => session[:user_id]}).map_relation_to_array(:course_id)
+
     render({ :template => "courses/index.html.erb" })
   end
 

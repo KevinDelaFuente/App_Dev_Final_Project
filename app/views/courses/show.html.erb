@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Course #<%= @the_course.id %> details
+      Details of <%= @the_course.title %>
     </h1>
     <%# @the_course.likes.where({ :user_id => session[:user_id]}).first.user_id %>
     <% if @the_course.likes.where({ :user_id => session[:user_id]}).first == nil %>
