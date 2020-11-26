@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   def index
     matching_courses = Course.all
 
-    @list_of_courses = matching_courses.order({ :created_at => :desc })
+    @list_of_courses = matching_courses.order({ :title => :asc })
 
     @likes_array = Like.where({ :user_id => session[:user_id]}).map_relation_to_array(:course_id)
 
@@ -17,6 +17,17 @@ class CoursesController < ApplicationController
     @the_course = matching_courses.at(0)
 
     render({ :template => "courses/show.html.erb" })
+  end
+
+  def hot
+
+    matching_courses = Course.all
+
+    @list_of_courses = matching_courses.order({ :likes_count => :desc }).first(3)
+
+    @likes_array = Like.where({ :user_id => session[:user_id]}).map_relation_to_array(:course_id)
+
+    render({ :template => "courses/hot.html.erb" })
   end
 
   def create

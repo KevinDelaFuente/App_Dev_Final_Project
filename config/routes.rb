@@ -126,6 +126,8 @@ Rails.application.routes.draw do
 
   # Routes for the Course resource:
 
+  get("/courses/hot", { :controller => "courses", :action => "hot" })
+
   # CREATE
   post("/insert_course", { :controller => "courses", :action => "create" })
           
