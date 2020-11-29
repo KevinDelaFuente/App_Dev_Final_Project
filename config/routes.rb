@@ -128,6 +128,8 @@ Rails.application.routes.draw do
 
   get("/courses/hot", { :controller => "courses", :action => "hot" })
 
+  get("/courses/recommend", { :controller => "courses", :action => "recommend" })
+
   # CREATE
   post("/insert_course", { :controller => "courses", :action => "create" })
           

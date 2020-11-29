@@ -30,6 +30,11 @@ class CoursesController < ApplicationController
     render({ :template => "courses/hot.html.erb" })
   end
 
+  def recommend
+
+    render({ :template => "courses/recommend.html.erb" })
+  end 
+
   def create
     the_course = Course.new
     the_course.title = params.fetch("query_title")

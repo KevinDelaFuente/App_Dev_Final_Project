@@ -3,7 +3,6 @@
     <h1>
       Details of <%= @the_course.title %>
     </h1>
-    <%# @the_course.likes.where({ :user_id => session[:user_id]}).first.user_id %>
     <% if @the_course.likes.where({ :user_id => session[:user_id]}).first == nil %>
       
       <form action="/insert_like" method="post">
