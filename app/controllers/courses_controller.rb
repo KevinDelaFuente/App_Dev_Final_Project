@@ -42,17 +42,38 @@ class CoursesController < ApplicationController
     @matching_courses.each do |a_course|
       score = 0
       
-      #Score for careerpath
+      #Score for careerpath -> values classes aligned with careerpath
       if @matching_skillsets.map_relation_to_array(:course_id).include?a_course.id
         score = score + 20
       else
       end
 
-      #Score for rating
+      #Score for rating -> values classes with high rating by students
       score = score + a_course.rating
 
-      #Score for type of skill
-      
+      #Score for type of skill -> values classes with the same skill as other like courses
+          
+        @likes = Like.where({ :user_id => session[:user_id] })
+          
+        cruce = Array.new
+          
+        @likes.each do |a_like|
+          cruce.push(a_like.course_id)  
+        end
+
+        @likes.each do |a_like|
+          @liked_courses = Course.where({ :id => cruce})
+        end
+
+        if @liked_courses.map_relation_to_array(:skill_id).include?a_course.skill_id
+        score = score + 10
+      else
+      end
+
+
+
+
+
 
       @course_scores.store( a_course.id, score )
     end
