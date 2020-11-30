@@ -55,6 +55,7 @@ class CoursesController < ApplicationController
       #Score for type of skill -> values classes with the same skill as other liked courses
           
       @likes = Like.where({ :user_id => session[:user_id] })
+      @likes_array = @likes.map_relation_to_array(:course_id)
         
       cruce = Array.new
         
@@ -92,8 +93,17 @@ class CoursesController < ApplicationController
       #Store scores
 
       @course_scores.store( a_course.id, score )
-      
+
     end
+
+    @top = @course_scores.sort_by {|k, v| -v}.first(3)
+    @recommended = Array.new
+
+    @top.each do |pair|
+      @recommended.push(pair[0])
+    end
+
+    @list_of_courses = Course.where({ :id => @recommended})
 
     render({ :template => "courses/recommend.html.erb" })
   end 
