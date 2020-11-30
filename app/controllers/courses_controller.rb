@@ -44,7 +44,7 @@ class CoursesController < ApplicationController
       
       #Score for careerpath -> values classes aligned with careerpath
       if @matching_skillsets.map_relation_to_array(:course_id).include?a_course.id
-        score = score + 20
+        score = score + 5
       else
       end
 
@@ -65,13 +65,15 @@ class CoursesController < ApplicationController
           @liked_courses = Course.where({ :id => cruce})
         end
 
-        if @liked_courses.map_relation_to_array(:skill_id).include?a_course.skill_id
-        score = score + 10
-      else
-      end
 
+        if (@liked_courses != nil and @liked_courses.map_relation_to_array(:skill_id).include?a_course.skill_id)
+          score = score + 5
+        else
+        end
 
+      #Score for type other likes -> values classes like by other similar users
 
+      @similar_users = User.where.not({:id => session[:user_id]}).where({ :careerpath_id => @user.careerpath_id})
 
 
 
