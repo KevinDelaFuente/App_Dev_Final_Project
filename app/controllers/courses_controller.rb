@@ -37,12 +37,13 @@ class CoursesController < ApplicationController
 
     @user = User.where({ :id => session[:user_id]}).first
 
-    @matching_skillsets = Skillset.where({ :careerpath_id => @user.careerpath_id})
-
     @matching_courses.each do |a_course|
       score = 0
       
       #Score for careerpath -> values classes aligned with careerpath
+      
+      @matching_skillsets = Skillset.where({ :careerpath_id => @user.careerpath_id})
+      
       if @matching_skillsets.map_relation_to_array(:course_id).include?a_course.id
         score = score + 5
       else
@@ -51,33 +52,47 @@ class CoursesController < ApplicationController
       #Score for rating -> values classes with high rating by students
       score = score + a_course.rating
 
-      #Score for type of skill -> values classes with the same skill as other like courses
+      #Score for type of skill -> values classes with the same skill as other liked courses
           
-        @likes = Like.where({ :user_id => session[:user_id] })
-          
-        cruce = Array.new
-          
-        @likes.each do |a_like|
-          cruce.push(a_like.course_id)  
-        end
+      @likes = Like.where({ :user_id => session[:user_id] })
+        
+      cruce = Array.new
+        
+      @likes.each do |a_like|
+        cruce.push(a_like.course_id)  
+      end
 
-        @likes.each do |a_like|
-          @liked_courses = Course.where({ :id => cruce})
-        end
+      @liked_courses = Course.where({ :id => cruce})
+      
 
-
-        if (@liked_courses != nil and @liked_courses.map_relation_to_array(:skill_id).include?a_course.skill_id)
-          score = score + 5
-        else
-        end
+      if (@liked_courses != nil and @liked_courses.map_relation_to_array(:skill_id).include?a_course.skill_id)
+        score = score + 5
+      else
+      end
 
       #Score for type other likes -> values classes like by other similar users
 
       @similar_users = User.where.not({:id => session[:user_id]}).where({ :careerpath_id => @user.careerpath_id})
+ 
+      @potential_likes = Like.where({ :user_id => @similar_users.map_relation_to_array(:id) })
+        
+      cross_reference = Array.new
+        
+      @potential_likes.each do |a_like|
+        cross_reference.push(a_like.course_id)  
+      end
 
+      @potential_courses = Course.where({ :id => cross_reference})
 
+      if (@potential_courses != nil and @potential_courses.map_relation_to_array(:id).include?a_course.id)
+        score = score + 5
+      else
+      end
+      
+      #Store scores
 
       @course_scores.store( a_course.id, score )
+      
     end
 
     render({ :template => "courses/recommend.html.erb" })
