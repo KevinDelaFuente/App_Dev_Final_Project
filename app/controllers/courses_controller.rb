@@ -31,6 +31,31 @@ class CoursesController < ApplicationController
   end
 
   def recommend
+    @course_scores = Hash.new
+
+    @matching_courses = Course.all
+
+    @user = User.where({ :id => session[:user_id]}).first
+
+    @matching_skillsets = Skillset.where({ :careerpath_id => @user.careerpath_id})
+
+    @matching_courses.each do |a_course|
+      score = 0
+      
+      #Score for careerpath
+      if @matching_skillsets.map_relation_to_array(:course_id).include?a_course.id
+        score = score + 20
+      else
+      end
+
+      #Score for rating
+      score = score + a_course.rating
+
+      #Score for type of skill
+      
+
+      @course_scores.store( a_course.id, score )
+    end
 
     render({ :template => "courses/recommend.html.erb" })
   end 
