@@ -23,7 +23,7 @@ class CoursesController < ApplicationController
 
     matching_courses = Course.all
 
-    @list_of_courses = matching_courses.order({ :likes_count => :desc }).first(3)
+    @list_of_courses = matching_courses.order({ :likes_count => :desc }).first(10)
 
     @likes_array = Like.where({ :user_id => session[:user_id]}).map_relation_to_array(:course_id)
 
@@ -33,28 +33,9 @@ class CoursesController < ApplicationController
   def recommend
     @course_scores = Hash.new
 
-    @matching_courses = Course.all
-
     @user = User.where({ :id => session[:user_id]}).first
 
-    @matching_courses.each do |a_course|
-      score = 0
-      
-      #Score for careerpath -> values classes aligned with careerpath
-      
-      @matching_skillsets = Skillset.where({ :careerpath_id => @user.careerpath_id})
-      
-      if @matching_skillsets.map_relation_to_array(:course_id).include?a_course.id
-        score = score + 5
-      else
-      end
-
-      #Score for rating -> values classes with high rating by students
-      score = score + a_course.rating
-
-      #Score for type of skill -> values classes with the same skill as other liked courses
-          
-      @likes = Like.where({ :user_id => session[:user_id] })
+          @likes = Like.where({ :user_id => session[:user_id] })
       @likes_array = @likes.map_relation_to_array(:course_id)
         
       cruce = Array.new
@@ -64,7 +45,26 @@ class CoursesController < ApplicationController
       end
 
       @liked_courses = Course.where({ :id => cruce})
+
+
+    @matching_courses = Course.where.not({ :id => cruce})
+    
+    @matching_courses.each do |a_course|
+      score = 0
       
+      #Score for careerpath -> values classes aligned with careerpath
+      
+      @matching_skillsets = Skillset.where({ :careerpath_id => @user.careerpath_id})
+      
+      if @matching_skillsets.map_relation_to_array(:course_id).include?a_course.id
+        score = score + 2
+      else
+      end
+
+      #Score for rating -> values classes with high rating by students
+      score = score + a_course.rating
+
+      #Score for type of skill -> values classes with the same skill as other liked courses    
 
       if (@liked_courses != nil and @liked_courses.map_relation_to_array(:skill_id).include?a_course.skill_id)
         score = score + 5
@@ -96,7 +96,7 @@ class CoursesController < ApplicationController
 
     end
 
-    @top = @course_scores.sort_by {|k, v| -v}.first(3)
+    @top = @course_scores.sort_by {|k, v| -v}.first(5)
     @recommended = Array.new
 
     @top.each do |pair|
