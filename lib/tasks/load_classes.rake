@@ -9,12 +9,13 @@ namespace :load_classes do
     csv.each do |row|
       puts row.to_hash
       c = Course.new
-      c.title = row["Class"]
-      c.description = row["Decription"]
-      c.professor_id = row["Professor_ID"]
-      c.skill_id = row["Skill"]
-      c.rating = row["Rating"]
-      c.hours_required = row["Hours Required"]
+      c.title = row["title"].to_s
+      c.description = row["description"].to_s
+      c.professor_id = row["professor_id"]
+      c.skill_id = row["skill_id"]
+      c.rating = row["rating"]
+      c.hours_required = row["hours_required"]
+      c.likes_count = row["likes_count"]
       c.save
     end
     
