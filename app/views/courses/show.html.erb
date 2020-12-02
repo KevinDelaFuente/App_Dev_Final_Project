@@ -1,10 +1,10 @@
 <div>
   <div>
-    <h1>
+    <h1 class="display-5">
       Details of <%= @the_course.title %>
     </h1>
 
-<hr>
+  <hr>
 
     <% if @the_course.likes.where({ :user_id => session[:user_id]}).first == nil %>
       
@@ -33,7 +33,7 @@
       </form>
 
     <% end%>
-<hr>
+  <hr>
     <div>
       <div>
         <a href="/">
@@ -48,50 +48,51 @@
       </div>
     </div>
 <hr>
-    <dl>
-      <dt>
-        Title
-      </dt>
-      <dd>
-        <%= @the_course.title %>
-      </dd>
 
-      <dt>
+  <table class = 'table table-hover'>
+    <tr>
+
+      <th>
         Description
-      </dt>
-      <dd>
-        <%= @the_course.description %>
-      </dd>
-
-      <dt>
+      </th>
+      <th>
         Professor
-      </dt>
-      <dd>
-        <%= @the_course.professor.name %>
-      </dd>
-
-      <dt>
+      </th>
+      <th>
         Class Rating (0 to 5)
-      </dt>
-      <dd>
-        <%= @the_course.rating %>
-      </dd>
+      </th>
+      <th>
+        Hours required 
+      </th>
+      <th>
+        Likes Count
+      </th>
+    </tr>
 
-      <dt>
-        Hours required per week outside of class
-      </dt>
-      <dd>
-        <%= @the_course.hours_required %>
-      </dd>
+      <td>
+         <%= @the_course.description %>
+      </td>
 
-      <dt>
-        Likes count
-      </dt>
-      <dd>
-        <%= @the_course.likes_count %>
-      </dd>
+      <td>
+         <%= @the_course.professor.name %>
+      </td>
 
-    </dl>
+      <td>
+         <%= @the_course.rating %>
+      </td>
+      
+      <td>
+         <%= @the_course.hours_required %>
+      </td>
+
+      <td>
+         <%= @the_course.likes_count %>
+      </td>
+
+  </table>
+
+
+    
   </div>
 </div>
 
