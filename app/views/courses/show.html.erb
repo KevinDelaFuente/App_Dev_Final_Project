@@ -56,10 +56,13 @@
         Description
       </th>
       <th>
-        Professor
+        Professor's Portrait
       </th>
       <th>
-        Class Rating (0 to 5)
+        Professor's Teaching Philosophy
+      </th>
+      <th>
+        Class Rating (Max 5)
       </th>
       <th>
         Hours required 
@@ -70,11 +73,16 @@
     </tr>
 
       <td>
-         <%= @the_course.description %>
+         <%= @the_course.description + ' with Professor ' +  @the_course.professor.name %>
       </td>
 
       <td>
-         <%= @the_course.professor.name %>
+        <img src="https://robohash.org/<%= @the_course.professor.name %>?set=set1" width="150" height="150">
+      </td>
+
+      <td>
+        <% quote = open("https://api.kanye.rest/").read  %>
+        <%= JSON(quote).fetch('quote') %>
       </td>
 
       <td>
