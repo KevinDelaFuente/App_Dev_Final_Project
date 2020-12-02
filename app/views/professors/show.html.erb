@@ -1,0 +1,71 @@
+<div>
+  <div>
+    <h1>
+      Professor #<%= @the_professor.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/professors">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_professor/<%= @the_professor.id %>">
+          Delete professor
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_professor.name %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_professor.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_professor.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit professor
+    </h2>
+
+    <form action="/modify_professor/<%= @the_professor.id %>"  method="post" >
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_professor.name %>">
+      </div>
+
+      <button>
+        Update professor
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

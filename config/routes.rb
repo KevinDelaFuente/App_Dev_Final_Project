@@ -1,5 +1,24 @@
 Rails.application.routes.draw do
 
+  # Routes for the Professor resource:
+
+  # CREATE
+  post("/insert_professor", { :controller => "professors", :action => "create" })
+          
+  # READ
+  get("/professors", { :controller => "professors", :action => "index" })
+  
+  get("/professors/:path_id", { :controller => "professors", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_professor/:path_id", { :controller => "professors", :action => "update" })
+  
+  # DELETE
+  get("/delete_professor/:path_id", { :controller => "professors", :action => "destroy" })
+
+  #------------------------------
+
   get("/", { :controller => 'application', :action => 'home'})
 
   # Routes for the Credit resource:

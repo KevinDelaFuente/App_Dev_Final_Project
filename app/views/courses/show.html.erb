@@ -67,25 +67,18 @@
         Professor
       </dt>
       <dd>
-        <%= @the_course.professor_id %>
+        <%= @the_course.professor.name %>
       </dd>
 
       <dt>
-        Skill
-      </dt>
-      <dd>
-        <%= @the_course.skill_id %>
-      </dd>
-
-      <dt>
-        Rating
+        Class Rating (0 to 5)
       </dt>
       <dd>
         <%= @the_course.rating %>
       </dd>
 
       <dt>
-        Hours required
+        Hours required per week outside of class
       </dt>
       <dd>
         <%= @the_course.hours_required %>
@@ -98,19 +91,6 @@
         <%= @the_course.likes_count %>
       </dd>
 
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_course.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_course.updated_at) %> ago
-      </dd>
     </dl>
   </div>
 </div>

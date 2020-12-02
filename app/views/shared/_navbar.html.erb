@@ -15,24 +15,19 @@
             Resources
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a href="/credits" class="dropdown-item">
-              Credits
+            <a href="/" class="dropdown-item">
+              Home
             </a>
-            <a href="/skillsets" class="dropdown-item">
-              Skillsets
-            </a>
-            <a href="/skills" class="dropdown-item">
-              Skills
-            </a>
-            <a href="/careerpaths" class="dropdown-item">
-              Careerpaths
-            </a>
-            <a href="/likes" class="dropdown-item">
-              Likes
+            <a href="/courses/recommend" class="dropdown-item">
+              Recommended Classes
             </a>
             <a href="/courses" class="dropdown-item">
-              Courses
+              All Classes
             </a>
+            <a href="/courses/hot" class="dropdown-item">
+              Top 10 Liked Classes
+            </a>
+
             <% if session[:user_id] != nil %>
               <a href="/user_sign_out" class="dropdown-item">
                 Sign Out

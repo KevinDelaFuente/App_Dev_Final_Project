@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      List of all professors
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new professor
+    </h2>
+
+    <form action="/insert_professor" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <button>
+        Create professor
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_professors.each do |a_professor| %>
+      <tr>
+        <td>
+          <%= a_professor.id %>
+        </td>
+
+        <td>
+          <%= a_professor.name %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_professor.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_professor.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/professors/<%= a_professor.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
