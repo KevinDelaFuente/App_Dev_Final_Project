@@ -16,8 +16,6 @@ class User < ApplicationRecord
 
   has_many(:likes, { :class_name => "Like", :foreign_key => "user_id", :dependent => :destroy })
 
-  has_many(:credits, { :class_name => "Credit", :foreign_key => "user_id", :dependent => :destroy })
-
   belongs_to(:careerpath, { :required => false, :class_name => "Careerpath", :foreign_key => "careerpath_id" })
 
 end
